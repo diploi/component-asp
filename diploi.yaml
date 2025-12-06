@@ -1,0 +1,13 @@
+diploiVersion: v1.0
+type: component
+name: ASP.NET Core
+description: Official Diploi component for Blazor
+
+hosts:
+  - name: ASP.NET Core
+    identifier: app
+    urlFormat: "[label].[default-domain]"
+
+images:
+  - identifier: app
+    prebuildImage: ghcr.io/diploi/component-asp:[tag]

@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS dev
+
+ARG FOLDER=/app
+
+COPY --chown=1000:1000 . /app
+
+WORKDIR $FOLDER
+
+USER 1000:1000
+
+EXPOSE 5103
+
+RUN dotnet restore
+
+EXPOSE 5103
+
+ENV ASPNETCORE_URLS=http://+:5103
+
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+ENV ASPNETCORE_HTTPS_PORT=""
+
+CMD ["dotnet", "watch", "--no-launch-profile"]
