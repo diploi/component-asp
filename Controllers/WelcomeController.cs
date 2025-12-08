@@ -13,7 +13,7 @@ public class WelcomeController : ControllerBase
       <!DOCTYPE html>
       <html>
       <head>
-          <title>FastAPI</title>
+          <title>ASP.NET</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <style>
           * {
