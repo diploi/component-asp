@@ -5,8 +5,6 @@ ARG FOLDER=/app
 
 COPY . /app
 
-RUN dotnet restore
-
 RUN dotnet publish component-asp.csproj -c Release -o out
 
 # Runtime stage
