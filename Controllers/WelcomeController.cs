@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspProject.Controllers;
+namespace ComponentAsp.Controllers;
 
 [ApiController]
 [Route("")]
 public class WelcomeController : ControllerBase
 {
-  [HttpGet]
-  public ContentResult Welcome()
-  {
-    const string html = """
+    [HttpGet]
+    public ContentResult Welcome()
+    {
+        const string html = """
       <!DOCTYPE html>
       <html>
       <head>
@@ -121,7 +121,7 @@ public class WelcomeController : ControllerBase
       </body>
       </html>
     """;
-    return Content(html, "text/html");
-  }
+        return Content(html, "text/html");
+    }
 
 }

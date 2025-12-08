@@ -1,6 +1,6 @@
-@AspProject_HostAddress = http://localhost:5103
+@component-asp_HostAddress = http://localhost:5103
 
-GET {{AspProject_HostAddress}}/weatherforecast/
+GET {{component-asp_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
