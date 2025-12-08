@@ -23,14 +23,27 @@ Link to the full guide - upcoming
 During development, the container uses `dotnet watch` to enable automatic reloads when files change. The development server is started with:
 
 ```sh
-dotnet watch run --no-launch-profile
+dotnet watch run --no-launch-profile --hot-reload --non-interactive
 ```
-
 This will:
 - Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.
 - Run the ASP.NET application with hot reload enabled.
 - Start the app on port 5103.
 - Avoid using any launch profile so environment variables are controlled by the container.
+
+### Installing Packages
+
+**NuGet packages** (C# libraries and frameworks):
+```sh
+dotnet add package <PackageName>
+```
+For example:
+```sh
+dotnet add package Newtonsoft.Json
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+The `.csproj` file tracks NuGet dependencies, triggering automatically restored during development and build.
 
 ### Production
  
