@@ -42,7 +42,7 @@ For example:
 dotnet add package Newtonsoft.Json
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
-> **Important:** Afterward, manually press the restart button on the running ASP.NET pod so it picks up the newly installed dependencies.
+> **Important:** After installing packages, open the Deployment page and restart the running ASP.NET container so it loads the new dependencies.
 
 ### Production
  
