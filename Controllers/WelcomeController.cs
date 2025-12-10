@@ -6,10 +6,10 @@ namespace ComponentAsp.Controllers;
 [Route("")]
 public class WelcomeController : ControllerBase
 {
-  [HttpGet]
-  public ContentResult Welcome()
-  {
-    const string html = """
+    [HttpGet]
+    public ContentResult Welcome()
+    {
+        const string html = """
         <!DOCTYPE html>
         <html>
         <head>
@@ -111,6 +111,7 @@ public class WelcomeController : ControllerBase
                 <br><br>
                 <b> Install dependencies: </b><br> 
                 Please use <code>dotnet add package &lt;packageId&gt;</code> to add packages to your environment.
+                Afterward, manually press the restart button on the running ASP.NET pod so it picks up the newly installed dependencies.
             </p>
 
             <hr />
@@ -121,7 +122,7 @@ public class WelcomeController : ControllerBase
         </body>
         </html>
     """;
-    return Content(html, "text/html");
-  }
+        return Content(html, "text/html");
+    }
 
 }
