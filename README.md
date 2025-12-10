@@ -42,8 +42,7 @@ For example:
 dotnet add package Newtonsoft.Json
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
-
-The `.csproj` file tracks NuGet dependencies, triggering automatically restored during development and build.
+> **Important:** Afterward, manually press the restart button on the running ASP.NET pod so it picks up the newly installed dependencies.
 
 ### Production
  
