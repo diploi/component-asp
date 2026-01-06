@@ -110,8 +110,8 @@ public class WelcomeController : ControllerBase
                 In development stage, ASP.NET will automatically reload as you make changes.
                 <br><br>
                 <b> Install dependencies: </b><br> 
-                Please use <code>dotnet add package &lt;packageId&gt;</code> to add packages to your environment.
-                After installing packages, open the Deployment page and restart the running ASP.NET container so it loads the new dependencies.
+                Please use <code>dotnet add package &lt;packageId&gt;</code> to add NuGet packages
+                After installing packages, the development environment will automatically reload to include the new dependencies.
             </p>
 
             <hr />
