@@ -38,7 +38,11 @@ spec:
         - name: install-dependencies
           image: {{ .Values.images.app }}
           imagePullPolicy: Always
-          command: ['dotnet', 'build']
+          command:
+            - /bin/sh
+            - -c
+            - >
+              dotnet restore && dotnet build;
           workingDir: /app{{ .Values.folder }}
           volumeMounts:
             {{- if hasKey .Values.storage "code" }}
