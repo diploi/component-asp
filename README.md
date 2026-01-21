@@ -34,15 +34,22 @@ This will:
 ### Installing Packages
 
 **NuGet packages** (C# libraries and frameworks):
+To add a new NuGet package in development, run these commands:
+
 ```sh
 dotnet add package <PackageName>
+dotnet build
 ```
+
 For example:
 ```sh
-dotnet add package Newtonsoft.Json
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Bogus
+dotnet build
 ```
-> **Important:** After installing packages, the development environment will automatically reload to include the new dependencies.
+
+The `dotnet add package` command updates your .csproj (or .fsproj) file and restores the package to the NuGet cache. The `dotnet build` command then updates the application runtime. 
+
+> **Important:** Please always run `dotnet build` after adding a new NuGet package to ensure the dll file is copied into bin/ and dependency graph is correct.
 
 ### Production
  
