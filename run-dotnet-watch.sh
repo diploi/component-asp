@@ -3,6 +3,10 @@ set -eu
 
 PORT=5103
 
+echo "=== Killing any existing process on port ${PORT} ==="
+fuser -k ${PORT}/tcp 2>/dev/null || true
+sleep 1
+
 echo "=== Waiting for port ${PORT} to be free ==="
 while netstat -ltn 2>/dev/null | grep -q ":${PORT} "; do
     sleep 0.2
