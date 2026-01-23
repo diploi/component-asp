@@ -20,10 +20,13 @@ Link to the full guide - upcoming
 
 ### Development
 
-During development, the container uses `dotnet watch` to enable automatic reloads when files change. The development server is started with:
+During development, the container uses the combination of `nodemon` and `dotnet watch` to enable automatic reloads when files and new dependencies change. The development server is started with:
 
 ```sh
-dotnet watch run --no-launch-profile --hot-reload --non-interactive
+dotnet watch run \
+    --no-launch-profile \
+    --non-interactive \
+    /p:UseSharedCompilation=false
 ```
 This will:
 - Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.
@@ -34,22 +37,18 @@ This will:
 ### Installing Packages
 
 **NuGet packages** (C# libraries and frameworks):
-To add a new NuGet package in development, run these commands:
+Add dependencies during development with the standard .NET CLI:
 
 ```sh
 dotnet add package <PackageName>
-dotnet build
 ```
 
 For example:
 ```sh
 dotnet add package Bogus
-dotnet build
 ```
 
-The `dotnet add package` command updates your .csproj (or .fsproj) file and restores the package to the NuGet cache. The `dotnet build` command then updates the application runtime. 
-
-> **Important:** Please always run `dotnet build` after adding a new NuGet package to ensure the dll file is copied into bin/ and dependency graph is correct.
+`dotnet add package` updates the `.csproj` and restores the package to the local NuGet cache. `nodemon` notices the new package reference in `component-asp.csproj` and restarts the runtime so the change is picked up immediately.
 
 ### Production
  
