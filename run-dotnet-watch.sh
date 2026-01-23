@@ -3,20 +3,41 @@ set -eu
 
 PORT=5103
 
-echo "=== Killing any existing process on port ${PORT} ==="
-fuser -k ${PORT}/tcp 2>/dev/null || true
-sleep 1
+echo "=== Ensuring clean shutdown ==="
 
-echo "=== Waiting for port ${PORT} to be free ==="
-while netstat -ltn 2>/dev/null | grep -q ":${PORT} "; do
+# Gracefully stop dotnet-related servers (Roslyn / MSBuild)
+dotnet build-server shutdown 2>/dev/null || true
+
+# Try graceful shutdown first
+if ss -ltnp 2>/dev/null | grep -q ":${PORT} "; then
+    echo "Port ${PORT} is in use, attempting graceful shutdown..."
+    pkill -TERM -f "dotnet watch" 2>/dev/null || true
+    pkill -TERM -f "dotnet run" 2>/dev/null || true
+fi
+
+# Wait for port to be released (bounded wait)
+echo "=== Waiting for port ${PORT} to be released ==="
+for i in {1..50}; do
+    if ! ss -ltn 2>/dev/null | grep -q ":${PORT} "; then
+        break
+    fi
     sleep 0.2
 done
 
-echo "=== Building project (fresh graph) ==="
+# Hard kill only if still stuck
+if ss -ltn 2>/dev/null | grep -q ":${PORT} "; then
+    echo "Port ${PORT} still busy, forcing release..."
+    fuser -k ${PORT}/tcp 2>/dev/null || true
+    sleep 0.5
+fi
+
+echo "=== Starting to build ==="
 dotnet build --no-incremental
 
 echo "=== Starting dotnet watch ==="
 exec dotnet watch run \
     --no-launch-profile \
     --non-interactive \
-    /p:UseSharedCompilation=false
+    /p:UseSharedCompilation=false \
+    /p:BuildProjectReferences=false \
+    /p:DisableRazorBuildServer=true
