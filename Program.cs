@@ -4,6 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<HostOptions>(options =>
+{
+    options.ShutdownTimeout = TimeSpan.FromSeconds(1);
+});
+
+
 builder.Services.AddControllers();
 
 // Configure data protection 
