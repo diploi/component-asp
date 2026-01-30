@@ -20,15 +20,15 @@ Link to the full guide - upcoming
 
 ### Development
 
-During development, the container uses the combination of `nodemon` and `dotnet watch` to enable automatic reloads when files and new dependencies change. The development server is started with:
+During development, the container uses `nodemon` to enable automatic reloads when files and new dependencies change. The development server is started with:
 
 ```sh
-dotnet watch run \
+dotnet run \
     --no-launch-profile \
-    --non-interactive
+    --non-interactive 
 ```
 This will:
-- Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.
+- Use `dotnet run` to monitor for changes to C# source files and restart the server when changes are detected.
 - Run the ASP.NET application with hot reload enabled.
 - Start the app on port 5103.
 - Avoid using any launch profile so environment variables are controlled by the container.
