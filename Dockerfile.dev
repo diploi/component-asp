@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS dev
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends tini curl nodejs npm psmisc \
+    && apt-get install -y --no-install-recommends tini nodejs npm iproute2 net-tools \
     && npm install -g nodemon \
     && rm -rf /var/lib/apt/lists/*
 
