@@ -25,8 +25,7 @@ During development, the container uses the combination of `nodemon` and `dotnet 
 ```sh
 dotnet watch run \
     --no-launch-profile \
-    --non-interactive \
-    /p:UseSharedCompilation=false
+    --non-interactive
 ```
 This will:
 - Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS dev
+FROM mcr.microsoft.com/dotnet/sdk:10.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends tini nodejs npm iproute2 net-tools \
