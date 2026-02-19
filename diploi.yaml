@@ -1,13 +1,15 @@
 diploiVersion: v1.0
 type: component
 name: ASP.NET Core
-description: Official Diploi component for Blazor
+description: Official Diploi component for ASP.NET Core applications.
+
+supportsAdditionalHosts: { serviceName: 'app'}
 
 hosts:
   - name: ASP.NET Core
     identifier: app
-    urlFormat: "[label].[default-domain]"
+    port: 5103
 
 images:
   - identifier: app
-    prebuildImage: ghcr.io/diploi/component-asp:[tag]
+    prebuildImage: public.ecr.aws/p8t2q7f4/diploi/component-asp:[tag]
