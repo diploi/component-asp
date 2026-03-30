@@ -105,13 +105,12 @@ public class WelcomeController : ControllerBase
             <h1>ASP.NET</h1>
 
             <p>
-                Your ASP.NET application is up and running! You can start editing the code
-                to build your backend API. 
-                In development stage, ASP.NET will automatically reload as you make changes.
+                Your ASP.NET application is up and running. You can now start building your backend API.
+                During development, ASP.NET automatically reloads as you make changes.
                 <br><br>
-                <b> Install dependencies: </b><br> 
-                Please use <code>dotnet add package &lt;packageId&gt;</code> to add packages to your environment.
-                After installing packages, open the Deployment page and restart the running ASP.NET container so it loads the new dependencies.
+                <b>Install dependencies:</b><br>
+                Use <code>dotnet add package &lt;packageId&gt;</code> to add packages to your environment.
+                After running <code>dotnet add package &lt;PackageName&gt;</code>, always run <code>dotnet build</code> to resolve new dependency update.
             </p>
 
             <hr />

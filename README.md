@@ -23,8 +23,9 @@ Link to the full guide - upcoming
 During development, the container uses `dotnet watch` to enable automatic reloads when files change. The development server is started with:
 
 ```sh
-dotnet watch run --no-launch-profile --non-interactive
+dotnet watch --no-launch-profile --hot-reload --non-interactive
 ```
+
 This will:
 - Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.
 - Run the ASP.NET application with hot reload enabled.
@@ -42,7 +43,7 @@ For example:
 dotnet add package Newtonsoft.Json
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
-> **Important:** After installing packages, open the Deployment page and restart the running ASP.NET container so it loads the new dependencies.
+> **Important:** After running <code>dotnet add package &lt;PackageName&gt;</code>, always run <code>dotnet build</code> to resolve new dependency update.
 
 ### Production
  
