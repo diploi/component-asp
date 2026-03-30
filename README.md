@@ -23,7 +23,7 @@ Link to the full guide - upcoming
 During development, the container uses `dotnet watch` to enable automatic reloads when files change. The development server is started with:
 
 ```sh
-dotnet watch run --no-launch-profile --hot-reload --non-interactive
+dotnet watch run --no-launch-profile --non-interactive
 ```
 This will:
 - Use `dotnet watch` to monitor for changes to C# source files and restart the server when changes are detected.

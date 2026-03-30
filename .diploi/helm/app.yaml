@@ -38,7 +38,12 @@ spec:
         - name: install-dependencies
           image: {{ .Values.images.app }}
           imagePullPolicy: Always
-          command: ['dotnet', 'build']
+          command: 
+            - /bin/sh
+            - -c
+            - |
+              echo "Building dependencies..."
+              dotnet build
           workingDir: /app{{ .Values.folder }}
           volumeMounts:
             {{- if hasKey .Values.storage "code" }}
@@ -52,19 +57,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5103
-          {{- if eq .Values.stage "development"}}
-          resources:
-            requests:
-              memory: 1500Mi
-            limits:
-              memory: 2000Mi
-          {{- else }}
-          resources:
-            requests:
-              memory: 500Mi
-            limits:
-              memory: 1000Mi
-          {{- end }}
           {{- if eq .Values.stage "development" }}
           workingDir: /app{{ .Values.folder }}
           {{- with .Values.containerCommands.developmentStart }}
@@ -88,6 +80,10 @@ spec:
             - name: {{ .identifier }}
               value: {{ .value | quote }}
             {{- end }}
+          {{- if eq .Values.stage "development" }}
+            - name: NUGET_PACKAGES
+              value: /app{{ .Values.folder }}/.nuget
+          {{- end }}
           volumeMounts:
             {{- if hasKey .Values.storage "code" }}
             - name: app-mount
